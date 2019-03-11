@@ -1,6 +1,6 @@
 # raaja96
 
-Its a 2way Authentication mechanism used for Login..
+Its a 2Factor Authentication mechanism used for Login..
 landing page  and features can be designed according to user need.
 
 --------

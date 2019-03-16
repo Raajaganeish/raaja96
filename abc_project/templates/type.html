@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="">name</label>
+          </div>
+          <div class="col-md-6">
+            <input type="text" id="user_id" placeholder="Type user id" autofocus>
+          </div>
+          <div class="col-md-3">
+            <p id="status">fsasf</p>
+
+          </div>
+        </div>
+        <div class="row">
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+  <script>
+    $("#user_id").change(function()
+    {
+      var temp = $(this).val();
+      console.log(temp)
+      $.ajax(
+      {
+        method:'GET',
+        url: 'ajax_check',
+        data : {
+          'username' : temp,
+        },
+        dataType: 'json',
+        success : function(data) {
+          console.log(data.is_taken)
+          if (data.is_taken)
+          {
+            $('#status').text("Alrady exsist").css({'color': 'red'})
+          }
+        }
+      }
+    );
+
+    });
+
+  </script>
+</html>

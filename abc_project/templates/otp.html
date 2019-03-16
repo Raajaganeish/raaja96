@@ -1,0 +1,79 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+
+
+
+
+    <div class="card border-primary mb-3" style="max-width: 150rem;">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <h4 class="card-title">Enter Valid OTP Pin!</h4>
+                {% if messages %}
+                <div class="alert alert-dark" role="alert">
+                  <ul class="messages">
+                      {% for message in messages %}
+                          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                      {% endfor %}
+                    </ul>
+
+                </div>
+                {% endif %}
+
+
+
+                <form method="POST">
+                  {% csrf_token %}
+                <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">OTP</label>
+                <div class="col-sm-6">
+                <input type="text" class="form-control" name="otp_val" placeholder="OTP">
+                </div>
+                <div class="col-sm-3">
+                  {{ status }}
+
+                </div>
+                <div class="col-sm-3">
+                  <p id='time'>Only <span>60</span> sec left </p>
+                </div>
+                </div>
+
+                <div class="form-group row">
+                  <br>
+                <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Log Me!</button>
+                </div>
+                <a href="{% url 'otp' %}">Resend OTP</a>
+
+                </form>
+            </div>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script>
+  var temp;
+$(document).ready(function(){
+   setInterval(function(){
+       temp = parseInt($('p span').html());
+       if(temp>0)
+       {
+           --temp;
+           $('p span').html(temp)
+       }
+   },1000);
+});
+
+</script>
+
+{% endblock %}

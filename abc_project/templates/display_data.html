@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome {{ model_obj_html.user.first_name }}</h1>
+          <h4>Data Collected so far!!!!</h4>
+
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+              <th scope="col">#</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Value</th>
+              </tr>
+            </thead>
+          <tbody>
+
+
+            {% for key,val in data_user.items  %}
+
+                      {% if key != "password" %}
+
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                              <td>{{ key }}</td>
+                              <td>{{ val }}</td>
+                        </tr>
+                      {% endif %}
+
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+  </div>
+
+</div>
+
+
+{% endblock %}
